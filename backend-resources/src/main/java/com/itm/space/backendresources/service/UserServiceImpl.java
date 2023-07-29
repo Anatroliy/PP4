@@ -56,7 +56,7 @@ public class UserServiceImpl implements UserService {
             userGroups = keycloakClient.realm(realm).users().get(String.valueOf(id)).groups();
         } catch (RuntimeException ex) {
             log.error("Exception on \"getUserById\": ", ex);
-            throw new BackendResourcesException(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+            throw new BackendResourcesException(ex.getMessage(), HttpStatus.BAD_REQUEST);
         }
         return userMapper.userRepresentationToUserResponse(userRepresentation, userRoles, userGroups);
     }
